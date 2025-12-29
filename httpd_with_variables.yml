@@ -2,23 +2,23 @@
 
 - hosts: all
   tasks:
-        - debug:
-          msg: "hello new world"
-        - package:
-                  name:
-                        - wget
-                        - httpd
-                  state: present
+  - debug:
+    msg: "hello new world"
+  - package:
+      name:
+      - wget
+      - httpd
+      state: present
 
-        - file:
-                  path: "/var/www/rizwan"
-                  state: directory
+  - file:
+      path: "/var/www/rizwan"
+      state: directory
 
-        - copy:
-                  src: "/home/rizwan/ansible/ansible-code/vimal_sir/rizwan.conf"
-                  dest: "/etc/httpd/conf.d/rizwan.conf"
+  - copy:
+      src: "/home/rizwan/ansible-code/rizwan.conf"
+      dest: "/etc/httpd/conf.d/rizwan.conf"
 
-        - service:
-                  name: httpd
-                  state: restarted
-                  enabled: true
+  - service:
+      name: httpd
+      state: restarted
+      enabled: true
