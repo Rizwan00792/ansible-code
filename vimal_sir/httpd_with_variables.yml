@@ -1,0 +1,24 @@
+# !! httpd service with variables playbook !!
+
+- hosts: all
+  tasks:
+    - debug:
+      msg: "hello world"
+    - package:
+          name:
+            - wget
+            - httpd
+          state: present
+
+    - file:
+          path: "/var/www/rizwan"
+          state: directory
+
+    - copy:
+          src: "/home/rizwan/ansible/rizwan.conf"
+          dest: "/etc/httpd/conf.d/rizwan.conf"
+
+    - service:
+          name: httpd
+          state: restarted
+          enabled: true

@@ -1,0 +1,22 @@
+# !! httpd service configuration playbook !!
+
+- hosts: all
+  tasks:
+    - package:
+          name:
+            - wget
+            - httpd
+          state: present
+
+    - file:
+          path: "/var/www/rizwan"
+          state: directory
+
+    - copy:
+          src: "/home/rizwan/ansible/rizwan.conf"
+          dest: "/etc/httpd/conf.d/rizwan.conf"
+
+    - service:
+          name: httpd
+          state: restarted
+          enabled: true
