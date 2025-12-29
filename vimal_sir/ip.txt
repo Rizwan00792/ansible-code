@@ -1,0 +1,3 @@
+[hosts]
+
+54.208.40.18 ansible_user=khan
