@@ -1,0 +1,31 @@
+# !! httpd service playbook !!
+
+- hosts: all
+  tasks:
+  - package:
+      name:
+      - wget
+      - httpd
+      state: present
+
+  - file:
+      path: "/var/www/rizwan"
+      state: directory
+
+  - copy:
+      dest: "/var/www/rizwan/index.html"
+      content: |
+        Hello Team,
+        This file is created using
+        Ansible copy module.
+
+  - service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - firewalld:
+        port: 80/tcp
+        state: enabled
+        permanent: yes
+        immediate: yes
