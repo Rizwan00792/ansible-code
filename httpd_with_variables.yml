@@ -2,8 +2,6 @@
 
 - hosts: all
   tasks:
-  - debug:
-    msg: "hello new world"
   - package:
       name:
       - wget
