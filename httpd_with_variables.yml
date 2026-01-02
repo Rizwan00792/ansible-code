@@ -1,22 +1,29 @@
 # !! httpd service with variables playbook !!
 
 - hosts: all
+
   tasks:
-  - package:
-      name:
-      - wget
-      - httpd
-      state: present
+      - debug:
+        msg: "hello world"   # debug is used to print any message
 
-  - file:
-      path: "/var/www/rizwan"
-      state: directory
+      - name: "Installing Package" # name is use to add description
+        package:
+              name:
+                  - wget
+                  - httpd
+              state: present
 
-  - copy:
-      src: "/home/rizwan/ansible-code/rizwan.conf"
-      dest: "/etc/httpd/conf.d/rizwan.conf"
+      - name: "Copying files"
+        file:
+              path: "/var/www/rizwan"
+              state: directory
 
-  - service:
-      name: httpd
-      state: restarted
-      enabled: true
+      - copy:
+              src: "/home/rizwan/ansible/rizwan.conf"
+              dest: "/etc/httpd/conf.d/rizwan.conf"
+
+      - name: "Copying files"
+        service:
+              name: httpd
+              state: restarted
+              enabled: true
