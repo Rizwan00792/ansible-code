@@ -1,0 +1,36 @@
+- hosts: myweb
+  tasks:
+  - debug:
+      msg: "Running playbook"
+
+  - name: "Installing httpd"
+    package:
+        name:
+            - wget
+            - httpd
+        state: present
+
+  - name: "Copying index page"
+    copy:
+       dest: "/var/www/html/index.html"
+       content: "for lb testing !!"
+
+  - name: "Restarting service"
+    service:
+        name: httpd
+        state: restarted
+        enabled: true
+
+
+  - name: "copying var files"
+    template:
+        dest: "/home/khan/"
+        src: "/home/rizwan/ansible-code/my.txt"
+
+- hosts: mylb
+  tasks:
+  - name: "Installing HA-proxy"
+    package:
+       name:
+           - haproxy
+       state: present
