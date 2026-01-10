@@ -8,12 +8,14 @@
         name:
             - wget
             - httpd
+            - php
+            - net-tools
         state: present
 
   - name: "Copying index page"
     copy:
-       dest: "/var/www/html/index.html"
-       content: "for lb testing !!"
+       src: "/home/rizwan/ansible-code/index.php"
+       dest: "/var/www/html/index.php"
 
   - name: "Restarting service"
     service:
