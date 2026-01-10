@@ -32,7 +32,7 @@
 - hosts: mylb
   tasks:
   - name: "Copying custom config file for haProxy"
-    copy:
+    template:
       src: "haproxy.cfg"
       dest: "/etc/haproxy/haproxy.cfg"
 
@@ -47,4 +47,4 @@
        name: haproxy
        state: restarted
        enabled: true
-       
+
