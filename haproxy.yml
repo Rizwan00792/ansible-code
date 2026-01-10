@@ -31,9 +31,20 @@
 
 - hosts: mylb
   tasks:
+  - name: "Copying custom config file for haProxy"
+    copy:
+      src: "haproxy.cfg"
+      dest: "/etc/haproxy/haproxy.cfg"
+
   - name: "Installing HA-proxy"
     package:
        name:
            - haproxy
+       state: present
+
+  - name: "Restarting haProxy"
+    service:
+       name: haproxy
        state: restarted
        enabled: true
+       
