@@ -35,4 +35,5 @@
     package:
        name:
            - haproxy
-       state: present
+       state: restarted
+       enabled: true
