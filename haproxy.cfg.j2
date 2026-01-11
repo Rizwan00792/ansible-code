@@ -86,6 +86,6 @@ backend app
     balance     roundrobin
 {% for i in groups['myweb'] %}
 
-        server app1 {{ i }}:80 check
+        server app{{ loop.index }} {{ i }}:80 check
 
 {% endfor %}
